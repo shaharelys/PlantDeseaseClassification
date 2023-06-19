@@ -7,7 +7,8 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 # TODO: Add type hinting
-def train_model(model, dataloaders, criterion, optimizer, num_epochs=NUM_EPOCH):
+
+def train_model(model, dataloaders, criterion, optimizer, num_epochs=NUM_EPOCH, save_interval=SAVE_INTERVAL):
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
 
@@ -42,3 +43,8 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=NUM_EPOCH):
             epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
 
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
+
+        # Save the model weights at the specified interval
+        if epoch % save_interval == 0:
+            torch.save(model.state_dict(), f'{WEIGHTS_FILE_PATH}/model_weights_epoch_{epoch}.pth')
+
