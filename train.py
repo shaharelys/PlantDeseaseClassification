@@ -46,5 +46,7 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=NUM_EPOCH, 
 
         # Save the model weights at the specified intervals
         if epoch % save_interval == 0 or epoch == num_epochs - 1:
-            torch.save(model.state_dict(), f'{WEIGHTS_FILE_PATH}/model_weights_epoch_{epoch}.pth')
+            temp_path = f'{WEIGHTS_FILE_PATH}/model_weights_epoch_{epoch}.pth'
+            torch.save(model.state_dict(), temp_path)
+            print(f'New weights were successfully saved: {temp_path}')
 
