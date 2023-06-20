@@ -44,7 +44,7 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=NUM_EPOCH, 
 
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
 
-        # Save the model weights at the specified interval
-        if epoch % save_interval == 0:
+        # Save the model weights at the specified intervals
+        if epoch % save_interval == 0 or epoch == num_epochs - 1:
             torch.save(model.state_dict(), f'{WEIGHTS_FILE_PATH}/model_weights_epoch_{epoch}.pth')
 
