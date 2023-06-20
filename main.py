@@ -21,6 +21,7 @@ def main() -> None:
     plant_classifier_model = model_plant_classifier.to(device)
 
     # Check if weight files exist and load weights from the file with the highest epoch
+    last_epoch = None
     if os.path.exists(WEIGHTS_FILE_PATH):
         weight_files = [f for f in os.listdir(WEIGHTS_FILE_PATH) if f.endswith('.pth')]
         if weight_files:  # Check if the list is not empty
@@ -29,13 +30,14 @@ def main() -> None:
                                        weight_files[-1])  # Get the file with the highest epoch number
             plant_classifier_model.load_state_dict(torch.load(weight_path))
             print(f'Loaded weights from file: {weight_path}')
+            last_epoch = int(re.search(r'epoch_(\d+)', weight_files[-1]).group(1))
 
     # Define the criterion and the optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(plant_classifier_model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
 
     # Train the model
-    train_model(plant_classifier_model, dataloaders, criterion, optimizer)
+    train_model(plant_classifier_model, dataloaders, criterion, optimizer, last_epoch)
 
 
 if __name__ == "__main__":

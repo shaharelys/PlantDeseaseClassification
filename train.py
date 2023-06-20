@@ -7,8 +7,13 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 # TODO: Add type hinting
-def train_model(model, dataloaders, criterion, optimizer, num_epochs=NUM_EPOCH, save_interval=SAVE_INTERVAL):
-    for epoch in range(num_epochs):
+def train_model(model, dataloaders, criterion, optimizer,
+                last_epoch=None,
+                num_epochs=NUM_EPOCH,
+                save_interval=SAVE_INTERVAL
+                ):
+    start_epoch = 0 if last_epoch is None else last_epoch + 1
+    for epoch in range(start_epoch, num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
 
         for phase in ['train', 'val']:
