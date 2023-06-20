@@ -1,17 +1,24 @@
 # train.py
 import torch
+from typing import Dict, Optional
+from torch.optim import Optimizer
+from torch.nn import Module
+from torch.utils.data import DataLoader
 from config import *
 
 # Set the device for computation
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
-# TODO: Add type hinting
-def train_model(model, dataloaders, criterion, optimizer,
-                last_epoch=None,
-                num_epochs=NUM_EPOCH,
-                save_interval=SAVE_INTERVAL
-                ):
+def train_model(model: Module,
+                dataloaders: Dict[str, DataLoader],
+                criterion: Module,
+                optimizer: Optimizer,
+                last_epoch: Optional[int] = None,
+                num_epochs: int = NUM_EPOCH,
+                save_interval: int = SAVE_INTERVAL
+                ) -> None:
+
     start_epoch = 0 if last_epoch is None else last_epoch + 1
     for epoch in range(start_epoch, num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))

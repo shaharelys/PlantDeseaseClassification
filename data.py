@@ -2,11 +2,15 @@
 import torch
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
+from typing import Tuple
 from config import *
 
 
-# TODO: Add type hinting
-def create_data_loaders(data_dir, train_ratio=TRAIN_RATIO, batch_size=BATCH_SIZE):
+def create_data_loaders(data_dir: str,
+                        train_ratio: float = TRAIN_RATIO,
+                        batch_size: int = BATCH_SIZE
+                        ) -> Tuple[DataLoader, DataLoader, DataLoader]:
+
     # Define transformations
     data_transforms = transforms.Compose([
         transforms.Resize((RESNET_1D_INPUT_SIZE, RESNET_1D_INPUT_SIZE)),
