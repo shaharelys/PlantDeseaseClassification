@@ -4,6 +4,7 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
 from config import *
 
+
 # TODO: Add type hinting
 def create_data_loaders(data_dir, train_ratio=TRAIN_RATIO, batch_size=BATCH_SIZE):
     # Define transformations

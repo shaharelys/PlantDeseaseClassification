@@ -2,6 +2,8 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
+import os
+import re
 from model import model_plant_classifier
 from data import create_data_loaders
 from train import train_model, device
@@ -17,6 +19,16 @@ def main() -> None:
 
     # Move the model to the appropriate device (local variable renamed to avoid shadowing)
     plant_classifier_model = model_plant_classifier.to(device)
+
+    # Check if weight files exist and load weights from the file with the highest epoch
+    if os.path.exists(WEIGHTS_FILE_PATH):
+        weight_files = [f for f in os.listdir(WEIGHTS_FILE_PATH) if f.endswith('.pth')]
+        if weight_files:  # Check if the list is not empty
+            weight_files.sort(key=lambda f: int(re.search(r'epoch_(\d+)', f).group(1)))  # Sort files by epoch number
+            weight_path = os.path.join(WEIGHTS_FILE_PATH,
+                                       weight_files[-1])  # Get the file with the highest epoch number
+            plant_classifier_model.load_state_dict(torch.load(weight_path))
+            print(f'Loaded weights from file: {weight_path}')
 
     # Define the criterion and the optimizer
     criterion = nn.CrossEntropyLoss()
