@@ -31,6 +31,7 @@ SAVE_INTERVAL = 5
 WEIGHTS_FILE_PATH = "/content/drive/MyDrive/Plant_Classification/assets/weights"
 
 # main module configurations
+DATA_DIR_OLD = "/content/drive/MyDrive/Plant_Classification/assets/images/PlantVillage-Dataset/raw/color/"
 DATA_DIR = "/content/drive/MyDrive/Plant_Classification/assets/images/PlantVillage-Dataset/raw/organized/"
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9

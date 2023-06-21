@@ -7,10 +7,10 @@ from config import *
 plants = PLANT_CLASSES
 
 # Base directory
-base_dir = DATA_DIR
+base_dir = DATA_DIR_OLD
 
 # New directory to store organized data
-new_dir = DATA_DIR_NEW
+new_dir = DATA_DIR
 
 # Create directories for each plant
 for plant in plants:
