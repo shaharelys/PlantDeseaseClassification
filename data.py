@@ -30,6 +30,11 @@ def create_data_loaders(data_dir: str,
     dropout_size = len(full_dataset) - train_size - valid_size - test_size  # the remaining size
     assert train_size + valid_size + test_size + dropout_size == len(
         full_dataset), "The sizes of the splits do not add up to the size of the full dataset."
+    print(f'Full dataset usage:'
+          f'Train dataset composed of {train_size} instances.'
+          f'Validation dataset composed of {valid_size} instances.'
+          f'Test dataset composed of {test_size} instances.'
+          f'{dropout_size} were dropped out.')
     train_dataset, valid_dataset, test_dataset, dropout_dataset = random_split(full_dataset,
                                                                                [train_size,
                                                                                 valid_size,
