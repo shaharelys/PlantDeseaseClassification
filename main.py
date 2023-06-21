@@ -9,6 +9,7 @@ from data import create_data_loaders
 from train import train_model, device
 from config import *
 
+# TODO: Add a README.md file
 
 def main() -> None:
 
@@ -39,6 +40,7 @@ def main() -> None:
     # Train the model
     train_model(plant_classifier_model, dataloaders, criterion, optimizer, last_epoch)
 
+    # TODO: Add here a test for the model
 
 if __name__ == "__main__":
     main()

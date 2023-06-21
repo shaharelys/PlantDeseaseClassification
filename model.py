@@ -5,7 +5,6 @@ from torchvision.models.resnet import ResNet50_Weights
 from config import *
 
 # Load pre-trained ResNet50
-# model_plant_classifier = models.resnet50(weights=True)
 model_plant_classifier = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
 
 # Replace the final layer
