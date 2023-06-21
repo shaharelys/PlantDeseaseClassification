@@ -18,6 +18,10 @@ for plant in plants:
     os.makedirs(dir_path, exist_ok=True)
     print(f"Created directory: {dir_path}")
 
+# Print the contents of the base directory
+print(f"Contents of base directory {base_dir}:")
+print(os.listdir(base_dir))
+
 # Move files to the corresponding directory
 for dir_name in os.listdir(base_dir):
     print(f'Working on {dir_name}..')
