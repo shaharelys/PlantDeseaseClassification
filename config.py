@@ -1,7 +1,20 @@
 # config.py
 
 # model module configurations
-PLANT_CLASSES = ['Pepper_bell', 'Potato', 'Tomato']
+PLANT_CLASSES = ['Apple_Consolidated',
+                 'Blueberry_Consolidated',
+                 'Cherry_(including_sour)_Consolidated',
+                 'Corn_(maize)_Consolidated',
+                 'Grape_Consolidated',
+                 'Orange_Consolidated',
+                 'Peach_Consolidated',
+                 'Pepper,_bell_Consolidated',
+                 'Potato_Consolidated',
+                 'Raspberry_Consolidated',
+                 'Soybean_Consolidated',
+                 'Squash_Consolidated',
+                 'Strawberry_Consolidated',
+                 'Tomato_Consolidated']
 
 # data module  configurations
 TRAIN_RATIO = 0.7
