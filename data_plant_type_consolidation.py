@@ -1,3 +1,4 @@
+# data_plant_type_consolidation.py
 import os
 import shutil
 from config import *
@@ -24,6 +25,7 @@ for dir_name in os.listdir(base_dir):
         if plant in dir_name:
             # Full path to the directory
             dir_path = os.path.join(base_dir, dir_name)
+            print(f'Working on {dir_path}..')
             # If it is a directory
             if os.path.isdir(dir_path):
                 # Move all files in the directory to the corresponding plant directory
