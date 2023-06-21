@@ -30,7 +30,7 @@ R_STD, G_STD, B_STD = 0.229, 0.224, 0.225  # ImageNet's RGB std
 
 # train module configurations
 NUM_EPOCH = 25
-SAVE_INTERVAL = 5
+SAVE_INTERVAL = 1
 WEIGHTS_FILE_PATH = "/content/drive/MyDrive/Plant_Classification/assets/weights"
 
 # main module configurations
