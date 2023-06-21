@@ -1,20 +1,22 @@
 # config.py
 
 # model module configurations
-PLANT_CLASSES = ['Apple_Consolidated',
-                 'Blueberry_Consolidated',
-                 'Cherry_(including_sour)_Consolidated',
-                 'Corn_(maize)_Consolidated',
-                 'Grape_Consolidated',
-                 'Orange_Consolidated',
-                 'Peach_Consolidated',
-                 'Pepper,_bell_Consolidated',
-                 'Potato_Consolidated',
-                 'Raspberry_Consolidated',
-                 'Soybean_Consolidated',
-                 'Squash_Consolidated',
-                 'Strawberry_Consolidated',
-                 'Tomato_Consolidated']
+PLANT_CLASSES = [
+    "Apple",
+    "Blueberry",
+    "Cherry",
+    "Corn",
+    "Grape",
+    "Orange",
+    "Peach",
+    "Pepper",
+    "Potato",
+    "Raspberry",
+    "Soybean",
+    "Squash",
+    "Strawberry",
+    "Tomato"
+]
 
 # data module  configurations
 TRAIN_RATIO = 0.7
@@ -29,6 +31,6 @@ SAVE_INTERVAL = 5
 WEIGHTS_FILE_PATH = "/content/drive/MyDrive/Plant_Classification/assets/weights"
 
 # main module configurations
-DATA_DIR = "/content/drive/MyDrive/Plant_Classification/assets/images"
+DATA_DIR = "/content/drive/MyDrive/Plant_Classification/assets/PlantVillage-Dataset/raw/color"
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9

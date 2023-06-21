@@ -1,31 +1,35 @@
 import os
 import shutil
+from config import *
 
-data_dir = "/content/drive/MyDrive/Plant_Classification/assets/images/PlantVillage-Dataset/raw/color"
+# List of plants
+plants = PLANT_CLASSES
 
-# get list of all directories in data_dir
-directories = [d for d in os.listdir(data_dir) if os.path.isdir(os.path.join(data_dir, d))]
+# Base directory
+base_dir = DATA_DIR
 
-print(f"Directories: {directories}")
+# Create directories for each plant
+for plant in plants:
+    dir_path = os.path.join(base_dir, plant)
+    os.makedirs(dir_path, exist_ok=True)
+    print(f"Created directory: {dir_path}")
 
-for directory in directories:
-    # get base plant type (everything before the ___)
-    base_plant_type = directory.split("___")[0]
-
-    # create consolidated directory if it doesn't exist
-    consolidated_dir = os.path.join(data_dir, f"{base_plant_type}_Consolidated")
-    if not os.path.exists(consolidated_dir):
-        print(f"Creating directory: {consolidated_dir}")
-        os.mkdir(consolidated_dir)
-
-    # move all images in directory to consolidated directory
-    for filename in os.listdir(os.path.join(data_dir, directory)):
-        if filename.endswith(".jpg"):  # adjust this if your images are not .jpg
-            source = os.path.join(data_dir, directory, filename)
-            destination = os.path.join(consolidated_dir, filename)
-            print(f"Moving file from {source} to {destination}")
-            shutil.move(source, destination)
-
-    # if the directory ends with "_Consolidated" (and is not the main consolidated directory), delete it
-    if directory.endswith("_Consolidated") and directory != f"{base_plant_type}_Consolidated":
-        shutil.rmtree(os.path.join(data_dir, directory))
+# Move files to the corresponding directory
+for dir_name in os.listdir(base_dir):
+    for plant in plants:
+        # If the plant name is in the directory name
+        if plant in dir_name:
+            # Full path to the directory
+            dir_path = os.path.join(base_dir, dir_name)
+            # If it is a directory
+            if os.path.isdir(dir_path):
+                # Move all files in the directory to the corresponding plant directory
+                for file_name in os.listdir(dir_path):
+                    old_file_path = os.path.join(dir_path, file_name)
+                    new_file_path = os.path.join(base_dir, plant, file_name)
+                    shutil.move(old_file_path, new_file_path)
+                    print(f"Moved file from {old_file_path} to {new_file_path}")
+                # Remove the directory
+                os.rmdir(dir_path)
+                print(f"Deleted directory: {dir_path}")
+                break  # no need to check the other plants
