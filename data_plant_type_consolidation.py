@@ -20,12 +20,13 @@ for plant in plants:
 
 # Move files to the corresponding directory
 for dir_name in os.listdir(base_dir):
+    print(f'Working on {dir_name}..')
     for plant in plants:
         # If the plant name is in the directory name
         if plant in dir_name:
+            print(f'Noticed it is a {plant} dir..')
             # Full path to the directory
             dir_path = os.path.join(base_dir, dir_name)
-            print(f'Working on {dir_path}..')
             # If it is a directory
             if os.path.isdir(dir_path):
                 # Move all files in the directory to the corresponding plant directory
