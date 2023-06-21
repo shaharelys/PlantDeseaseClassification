@@ -25,3 +25,7 @@ for directory in directories:
             destination = os.path.join(consolidated_dir, filename)
             print(f"Moving file from {source} to {destination}")
             shutil.move(source, destination)
+
+    # if the directory ends with "_Consolidated" (and is not the main consolidated directory), delete it
+    if directory.endswith("_Consolidated") and directory != f"{base_plant_type}_Consolidated":
+        shutil.rmtree(os.path.join(data_dir, directory))
