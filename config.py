@@ -20,7 +20,7 @@ PLANT_CLASSES = [
 
 # data module  configurations
 TRAIN_RATIO = 0.7
-BATCH_SIZE = 32
+BATCH_SIZE = 128
 RESNET_1D_INPUT_SIZE = 224
 R_MEAN, G_MEAN, B_MEAN = 0.485, 0.456, 0.406  # ImageNet's RGB means
 R_STD, G_STD, B_STD = 0.229, 0.224, 0.225  # ImageNet's RGB std
