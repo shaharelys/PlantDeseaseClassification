@@ -8,7 +8,7 @@ The system operates in two stages using a hierarchical method. Firstly, an image
 
 - The architecture is structured to have multiple neural networks - one initial network for classifying the plant image into its type and then subsequent networks, each specific to a plant type, that further classify the image into disease categories or a healthy class.
 
-- The plant classification model utilizes the pre-trained ResNet50 model from PyTorch's torchvision module. The ResNet50 model has been widely used for image processing tasks due to its robust performance.
+- The plant classification model utilizes the pre-trained ResNet50 model from PyTorch's torchvision module. The ResNet50 model has been widely used for image processing tasks due to its robust performance. The final layer of the ResNet50 model has been replaced to adapt the network for our specific number of plant type classes.
 
 ## Requirements
 
