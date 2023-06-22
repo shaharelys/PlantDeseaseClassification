@@ -22,7 +22,7 @@ Please note that the training process is resource-intensive. Using a free GPU on
 
 ## Dataset
 
-The model is trained and validated on the [PlantVillage Dataset](https://github.com/spMohanty/PlantVillage-Dataset/), which includes [colored images](https://github.com/spMohanty/PlantVillage-Dataset/tree/master/raw/color) of healthy and diseased leaves from a variety of plant species. The `data_plant_type_consolidation.py` script is used to prepare this dataset for the training of the plant classifier neural network.
+The model is trained and validated on the [colored images](https://github.com/spMohanty/PlantVillage-Dataset/tree/master/raw/color) of the [PlantVillage Dataset](https://github.com/spMohanty/PlantVillage-Dataset/). These are colored images of healthy and diseased leaves from a variety of plant species. The `data_plant_type_consolidation.py` script is used to prepare this dataset for the training of the plant classifier neural network.
 
 Our model supports the following plants found in PlantVillage:
 
