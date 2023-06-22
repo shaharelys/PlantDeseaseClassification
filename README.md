@@ -8,7 +8,7 @@ The system operates in two stages using a hierarchical method. Firstly, an image
 
 - The architecture is structured to have multiple neural networks - one initial network for classifying the plant image into its type and then subsequent networks, each specific to a plant type, that further classify the image into disease categories or a healthy class.
 
-- The plant classification model utilizes the pre-trained ResNet50 model from PyTorch's torchvision module. ResNet50 was chosen due to its excellent performance in handling images, which is central to our project.
+- The plant classification model utilizes the pre-trained ResNet50 model from PyTorch's torchvision module. The ResNet50 model has been widely used for image processing tasks due to its robust performance.
 
 ## Requirements
 
@@ -16,12 +16,15 @@ The system operates in two stages using a hierarchical method. Firstly, an image
 - PyTorch (1.5.0 or later)
 - Torchvision (0.6.0 or later)
 - Numpy (1.18.5 or later)
+- PIL (7.1.2 or later)
+
+Please note that the training process is resource-intensive. Using a free GPU on Google Colab, it takes a significant amount of time and utilizes about 90% of the available GPU RAM. It is recommended to use a more powerful GPU for faster training.
 
 ## Dataset
 
-The model is trained and validated on the PlantVillage Dataset, which includes colored images of healthy and diseased leaves from a variety of plant species. The `data_plant_type_consolidation.py` script is used to prepare this dataset for the training of the plant classifier neural network.
+The model is trained and validated on the [PlantVillage Dataset](https://github.com/spMohanty/PlantVillage-Dataset/), which includes [colored images](https://github.com/spMohanty/PlantVillage-Dataset/tree/master/raw/color) of healthy and diseased leaves from a variety of plant species. The `data_plant_type_consolidation.py` script is used to prepare this dataset for the training of the plant classifier neural network.
 
-Currently, our model supports the following plants:
+Our model supports the following plants found in PlantVillage:
 
 - Apple
 - Blueberry
@@ -37,10 +40,5 @@ Currently, our model supports the following plants:
 - Squash
 - Strawberry
 - Tomato
-
-## Usage
-
-This project can be used as a standalone script, imported as a module, or integrated into a larger system. Please check the individual script files for more detailed usage instructions.
-
 
 ---
