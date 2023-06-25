@@ -22,7 +22,7 @@ def main_1snn() -> None:
     plant_classifier_model = model_plant_classifier.to(device)
 
     # Load the latest model weights, if exists
-    plant_classifier_model, last_epoch = load_weights(plant_classifier_model, WEIGHTS_FILE_PATH)
+    plant_classifier_model, last_epoch = load_weights(model=plant_classifier_model, snn_type='1snn')
 
     # Define the criterion and the optimizer
     criterion = nn.CrossEntropyLoss()
@@ -37,7 +37,6 @@ def main_1snn() -> None:
     evaluate_model(plant_classifier_model, test_loader, criterion, device)
 
 """
-
 def main_2snns():
     # Train 2nd Stage Neural Networks (2snns)
     for model_name in MODEL_NAMES_2SNN:
@@ -63,7 +62,6 @@ def main_2snns():
 
         # Evaluate the 2snn model
         evaluate_model(model_2snn, test_loader, criterion, DEVICE)
-
 """
 
 
