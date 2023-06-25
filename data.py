@@ -33,10 +33,10 @@ def create_data_loaders(data_dir: str,
     assert train_size + valid_size + test_size + dropout_size == len(
         full_dataset), "The sizes of the splits do not add up to the size of the full dataset."
     print(f'Dataset usage:\n'
-          f'{train_size} instances were allocated for training.\n'
-          f'{valid_size} instances were allocated for validation.\n'
-          f'{test_size} instances were allocated for testing.\n'
-          f'{dropout_size} instances were dropped out.\n')
+          f'{train_size}\t instances were allocated for training.\n'
+          f'{valid_size}\t instances were allocated for validation.\n'
+          f'{test_size}\t instances were allocated for testing.\n'
+          f'{dropout_size}\t instances were dropped out.\n')
     torch.manual_seed(SEED)
     train_dataset, valid_dataset, test_dataset, dropout_dataset = random_split(full_dataset,
                                                                                [train_size,
