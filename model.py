@@ -2,15 +2,19 @@
 import torch
 from torchvision import models
 from torchvision.models.resnet import ResNet50_Weights
+from typing import Optional
 from utils import load_weights
 from config import *
 
 
-def load_model(snn_type: str, plant_type: str = None) -> torch.nn.Module:
+def load_model(snn_type: str,
+               plant_type: Optional[str] = None
+               ) -> tuple[torch.nn.Module, int]:
     """
     This function either returns a 1snn or a 2snn model based on the snn_type argument.
     For a 2snn, it also requires the plant_type argument.
     """
+
     if snn_type not in ['1snn', '2snn']:
         raise ValueError(f"Invalid SNN type. Expected '1snn' or '2snn', got {snn_type}")
 
@@ -38,8 +42,8 @@ def load_model(snn_type: str, plant_type: str = None) -> torch.nn.Module:
     model.fc = torch.nn.Linear(num_features, num_classes)
 
     # Load model weights if a pre-trained model is used
-    if snn_type == '1snn' or (snn_type == '2snn' and plant_type is not None):
-        model, last_epoch = load_weights(model, snn_type, plant_type)
+    model, last_epoch = load_weights(model, snn_type, plant_type)
 
     return model, last_epoch
+
 

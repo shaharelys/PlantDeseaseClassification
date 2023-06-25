@@ -9,11 +9,11 @@ from config import *
 
 def train_model(model: torch.nn.Module,
                 device: torch.device,
-                snn_type: str,
-                plant_type: Optional[str],
                 dataloaders: Dict[str, DataLoader],
                 criterion: Module,
                 optimizer: Optimizer,
+                snn_type: str,
+                plant_type: Optional[str] = None,
                 last_epoch: Optional[int] = None,
                 num_epochs: int = NUM_EPOCH,
                 save_interval: int = SAVE_INTERVAL_1SNN

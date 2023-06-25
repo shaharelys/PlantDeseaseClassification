@@ -28,11 +28,20 @@ def main_1snn() -> None:
 
     # Train the model
     print('Training 1snn..')
-    train_model(model, device, '1snn', None, dataloaders, criterion, optimizer, last_epoch)
+    train_model(model=model,
+                device=device,
+                dataloaders=dataloaders,
+                criterion=criterion,
+                optimizer=optimizer,
+                snn_type='1snn',
+                last_epoch=last_epoch)
 
     # Evaluate the model
     print('Evaluating 1snn..')
-    evaluate_model(model, test_loader, criterion, device)
+    evaluate_model(model=model,
+                   dataloader=test_loader,
+                   criterion=criterion,
+                   device=device)
 
 
 """

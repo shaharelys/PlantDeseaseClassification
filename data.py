@@ -13,7 +13,7 @@ def create_data_loaders(data_dir: str,
                         valid_ratio: float = VALID_RATIO,
                         test_ratio: float = TEST_RATIO,
                         batch_size: int = BATCH_SIZE
-                        ) -> Tuple[DataLoader, DataLoader, DataLoader]:
+                        ) -> tuple[DataLoader, DataLoader, DataLoader]:
 
     # Define transformations
     data_transforms = transforms.Compose([
