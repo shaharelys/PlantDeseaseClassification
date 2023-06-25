@@ -35,6 +35,7 @@ def create_data_loaders(data_dir: str,
           f'Validation dataset composed of {valid_size} instances.\n'
           f'Test dataset composed of {test_size} instances.\n'
           f'{dropout_size} instances were dropped out.\n')
+    torch.manual_seed(SEED)
     train_dataset, valid_dataset, test_dataset, dropout_dataset = random_split(full_dataset,
                                                                                [train_size,
                                                                                 valid_size,

@@ -6,17 +6,15 @@ from torch.nn import Module
 from torch.utils.data import DataLoader
 from config import *
 
-# Set the device for computation
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
 
 def train_model(model: Module,
                 dataloaders: Dict[str, DataLoader],
                 criterion: Module,
                 optimizer: Optimizer,
+                device: torch.device,
                 last_epoch: Optional[int] = None,
                 num_epochs: int = NUM_EPOCH,
-                save_interval: int = SAVE_INTERVAL
+                save_interval: int = SAVE_INTERVAL_1SNN
                 ) -> None:
 
     start_epoch = 0 if last_epoch is None else last_epoch + 1
@@ -57,7 +55,7 @@ def train_model(model: Module,
 
         # Save the model weights at the specified intervals
         if epoch % save_interval == 0 or epoch == num_epochs - 1:
-            temp_path = f'{WEIGHTS_FILE_PATH}/model_weights_epoch_{epoch}.pth'
+            temp_path = f'{WEIGHTS_FILE_PATH}/{WEIGHT_FILE_PREFIX}{epoch}.pth'
             torch.save(model.state_dict(), temp_path)
             print(f'New weights were successfully saved: {temp_path}')
 

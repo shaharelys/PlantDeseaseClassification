@@ -4,13 +4,13 @@ import shutil
 from config import *
 
 # List of plants
-plants = PLANT_CLASSES
+plants = list(PLANT_CLASSES.keys())
 
 # Base directory
 base_dir = DATA_DIR_OLD
 
 # New directory to store organized data
-new_dir = DATA_DIR
+new_dir = DATA_DIR_1SNN
 
 # Create directories for each plant
 for plant in plants:
