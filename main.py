@@ -2,12 +2,12 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
-from model import model_plant_classifier
+from config import *
 from data import create_data_loaders
-from utils import get_device, load_weights
+from utils import get_device
+from model import load_model
 from train import train_model
 from evaluate import evaluate_model
-from config import *
 
 
 def main_1snn() -> None:
@@ -18,23 +18,22 @@ def main_1snn() -> None:
     train_loader, valid_loader, test_loader = create_data_loaders(DATA_DIR_1SNN)
     dataloaders = {'train': train_loader, 'val': valid_loader}
 
-    # Move the model to the appropriate device (local variable renamed to avoid shadowing)
-    plant_classifier_model = model_plant_classifier.to(device)
-
-    # Load the latest model weights, if exists
-    plant_classifier_model, last_epoch = load_weights(model=plant_classifier_model, snn_type='1snn')
+    # Load the model and move it to the device
+    model, last_epoch = load_model('1snn')
+    model.to(device)
 
     # Define the criterion and the optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(plant_classifier_model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
+    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
 
     # Train the model
     print('Training 1snn..')
-    train_model(plant_classifier_model, dataloaders, criterion, optimizer, device, last_epoch)
+    train_model('1snn', None, dataloaders, criterion, optimizer, device, last_epoch)
 
     # Evaluate the model
     print('Evaluating 1snn..')
-    evaluate_model(plant_classifier_model, test_loader, criterion, device)
+    evaluate_model(model, test_loader, criterion, device)
+
 
 """
 def main_2snns():

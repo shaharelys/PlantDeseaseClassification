@@ -4,10 +4,12 @@ from typing import Dict, Optional
 from torch.optim import Optimizer
 from torch.nn import Module
 from torch.utils.data import DataLoader
+from model import load_model
 from config import *
 
 
-def train_model(model: Module,
+def train_model(snn_type: str,
+                plant_type: str,
                 dataloaders: Dict[str, DataLoader],
                 criterion: Module,
                 optimizer: Optimizer,
@@ -16,6 +18,10 @@ def train_model(model: Module,
                 num_epochs: int = NUM_EPOCH,
                 save_interval: int = SAVE_INTERVAL_1SNN
                 ) -> None:
+
+    # Load the appropriate model
+    model = load_model(snn_type, plant_type)
+    model.to(device)  # Move the model to the appropriate device
 
     start_epoch = 0 if last_epoch is None else last_epoch + 1
     for epoch in range(start_epoch, num_epochs):
@@ -55,7 +61,11 @@ def train_model(model: Module,
 
         # Save the model weights at the specified intervals
         if epoch % save_interval == 0 or epoch == num_epochs - 1:
-            temp_path = f'{WEIGHTS_FILE_PATH_1SNN}/{WEIGHT_FILE_PREFIX}{epoch}.pth'
+            if snn_type == '1snn':
+                weights_file_path = WEIGHTS_FILE_PATH_1SNN
+            else:
+                weights_file_path = f"{WEIGHTS_FILE_PATH_2SNNS}/{plant_type.lower()}"
+
+            temp_path = f'{weights_file_path}/{WEIGHT_FILE_PREFIX}{epoch}.pth'
             torch.save(model.state_dict(), temp_path)
             print(f'New weights were successfully saved: {temp_path}')
-

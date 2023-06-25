@@ -2,20 +2,11 @@
 import torch
 from torchvision import models
 from torchvision.models.resnet import ResNet50_Weights
+from utils import load_weights
 from config import *
 
-# Load pre-trained ResNet50
-model_plant_classifier = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
 
-# Replace the final layer
-num_features = model_plant_classifier.fc.in_features
-model_plant_classifier.fc = torch.nn.Linear(num_features, len(PLANT_CLASSES))
-
-# model.py
-from utils import load_weights
-
-
-def load_model___new(snn_type: str, plant_type: str = None) -> torch.nn.Module:
+def load_model(snn_type: str, plant_type: str = None) -> torch.nn.Module:
     """
     This function either returns a 1snn or a 2snn model based on the snn_type argument.
     For a 2snn, it also requires the plant_type argument.
@@ -46,7 +37,9 @@ def load_model___new(snn_type: str, plant_type: str = None) -> torch.nn.Module:
     num_features = model.fc.in_features
     model.fc = torch.nn.Linear(num_features, num_classes)
 
-    # Load model weights
-    model, _ = load_weights(model, snn_type, plant_type)
+    # Load model weights if a pre-trained model is used
+    if snn_type == '1snn' or (snn_type == '2snn' and plant_type is not None):
+        model, last_epoch = load_weights(model, snn_type, plant_type)
 
-    return model
+    return model, last_epoch
+
