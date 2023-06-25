@@ -24,6 +24,8 @@ print(os.listdir(base_dir))
 
 # Move files to the corresponding directory
 for dir_name in os.listdir(base_dir):
+
+
     print(f'Working on {dir_name}..')
     for plant in plants:
         # If the plant name is in the directory name

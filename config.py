@@ -29,11 +29,11 @@ PLANT_CLASSES = {
 
 # data module configurations
 SEED = 6061993  # the seed for the random split (my birthdate)
-TRAIN_RATIO = 1/100  # 1%
+TRAIN_RATIO = 10/100  # 1%
 VALID_RATIO = TRAIN_RATIO/10  # 0.1%
 TEST_RATIO = TRAIN_RATIO/10
 DROPOUT_RATIO = 1 - TRAIN_RATIO - VALID_RATIO - TEST_RATIO  # not in actual use
-BATCH_SIZE = 32  #128
+BATCH_SIZE = 128
 RESNET_1D_INPUT_SIZE = 224
 R_MEAN, G_MEAN, B_MEAN = 0.485, 0.456, 0.406  # ImageNet's RGB means
 R_STD, G_STD, B_STD = 0.229, 0.224, 0.225  # ImageNet's RGB std
