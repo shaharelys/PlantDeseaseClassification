@@ -29,8 +29,8 @@ PLANT_CLASSES = {
 
 # data module configurations
 SEED = 6061993  # picked my birthdate
-TRAIN_RATIO = 3/100  # 3%
-VALID_RATIO = TRAIN_RATIO/10  # 0.3%
+TRAIN_RATIO = 1/100  # 1%
+VALID_RATIO = TRAIN_RATIO/10  # 0.1%
 TEST_RATIO = TRAIN_RATIO/10
 DROPOUT_RATIO = 1 - TRAIN_RATIO - VALID_RATIO - TEST_RATIO  # not in actual use
 BATCH_SIZE = 32  #128
