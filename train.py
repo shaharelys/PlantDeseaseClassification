@@ -4,11 +4,11 @@ from typing import Dict, Optional
 from torch.optim import Optimizer
 from torch.nn import Module
 from torch.utils.data import DataLoader
-from model import load_model
 from config import *
 
 
-def train_model(snn_type: str,
+def train_model(model: torch.nn.Module,
+                snn_type: str,
                 plant_type: str,
                 dataloaders: Dict[str, DataLoader],
                 criterion: Module,
@@ -18,10 +18,20 @@ def train_model(snn_type: str,
                 num_epochs: int = NUM_EPOCH,
                 save_interval: int = SAVE_INTERVAL_1SNN
                 ) -> None:
+    return
 
-    # Load the appropriate model
-    model = load_model(snn_type, plant_type)
-    model.to(device)  # Move the model to the appropriate device
+
+def train_model(model: torch.nn.Module,
+                device: torch.device,
+                snn_type: str,
+                plant_type: Optional[str],
+                dataloaders: Dict[str, DataLoader],
+                criterion: Module,
+                optimizer: Optimizer,
+                last_epoch: Optional[int] = None,
+                num_epochs: int = NUM_EPOCH,
+                save_interval: int = SAVE_INTERVAL_1SNN
+                ) -> None:
 
     start_epoch = 0 if last_epoch is None else last_epoch + 1
     for epoch in range(start_epoch, num_epochs):

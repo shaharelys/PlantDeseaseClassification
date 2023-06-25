@@ -28,7 +28,7 @@ PLANT_CLASSES = {
 }
 
 # data module configurations
-SEED = 6061993  # picked my birthdate
+SEED = 6061993  # the seed for the random split (my birthdate)
 TRAIN_RATIO = 1/100  # 1%
 VALID_RATIO = TRAIN_RATIO/10  # 0.1%
 TEST_RATIO = TRAIN_RATIO/10
