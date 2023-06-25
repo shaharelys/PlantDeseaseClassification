@@ -39,7 +39,7 @@ R_MEAN, G_MEAN, B_MEAN = 0.485, 0.456, 0.406  # ImageNet's RGB means
 R_STD, G_STD, B_STD = 0.229, 0.224, 0.225  # ImageNet's RGB std
 
 # train module configurations
-NUM_EPOCH = 22
+NUM_EPOCH = 5  # 25
 SAVE_INTERVAL_1SNN = 1
 SAVE_INTERVAL_2SNN = 5
 WEIGHT_FILE_PREFIX = "weights_epoch_"
