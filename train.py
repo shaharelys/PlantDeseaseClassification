@@ -64,4 +64,4 @@ def train_model(model: torch.nn.Module,
 
             temp_path = f'{weights_file_path}/{WEIGHT_FILE_PREFIX}{epoch}.pth'
             torch.save(model.state_dict(), temp_path)
-            print(f'New weights were successfully saved: {temp_path}')
+            print(f'---> New weights were successfully saved: {temp_path}')

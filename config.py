@@ -2,9 +2,9 @@
 
 # General configurations
 ROOT_DIR = "/content/drive/MyDrive/Plant_Classification"
-DATA_DIR_OLD = f"{ROOT_DIR}/assets/images/PlantVillage-Dataset/raw/color/"
-DATA_DIR_1SNN = f"{ROOT_DIR}/assets/images/PlantVillage-Dataset/raw/organized/"
-DATA_DIR_2SNNS = f"{ROOT_DIR}/assets/images/PlantVillage-Dataset/raw/2snns/"
+DATA_DIR_OLD = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/color/"
+DATA_DIR_1SNN = DATA_DIR_OLD  # f"{ROOT_DIR}/assets/images/PlantVillage-Dataset/raw/organized/"
+DATA_DIR_2SNNS = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/2snns/"
 WEIGHTS_FILE_PATH = f"{ROOT_DIR}/assets/weights"
 WEIGHTS_FILE_PATH_2SNNS = f"{WEIGHTS_FILE_PATH}/weights_2snns"
 WEIGHTS_FILE_PATH_1SNN = f"{WEIGHTS_FILE_PATH}/weights_1snn"
@@ -24,15 +24,18 @@ PLANT_CLASSES = {
     "Soybean": ["healthy"],
     "Squash": ["Powdery_mildew"],
     "Strawberry": ["Leaf_scorch", "healthy"],
-    "Tomato": ["Bacterial_spot", "Early_blight", "Late_blight", "Leaf_Mold", "Septoria_leaf_spot", "Spider_mites Two-spotted_spider_mite", "Target_Spot", "Tomato_Yellow_Leaf_Curl_Virus", "Tomato_mosaic_virus", "healthy"]
+    "Tomato": ["Bacterial_spot", "Early_blight", "Late_blight", "Leaf_Mold", "Septoria_leaf_spot",
+               "Spider_mites Two-spotted_spider_mite", "Target_Spot", "Tomato_Yellow_Leaf_Curl_Virus",
+               "Tomato_mosaic_virus", "healthy"]
 }
+TOTAL_CLASSES_NUMBER = 38  # not in use in final code
 
 # data module configurations
 SEED = 6061993  # the seed for the random split (my birthdate)
-TRAIN_RATIO = 15/100  # 15%
-VALID_RATIO = TRAIN_RATIO/10  # 1.5%
-TEST_RATIO = TRAIN_RATIO/10
-DROPOUT_RATIO = 1 - TRAIN_RATIO - VALID_RATIO - TEST_RATIO  # not in actual use
+TOTAL_USAGE_RATIO = 5/100  # 5% # not in use in final code
+TRAIN_RATIO = 0.7*TOTAL_USAGE_RATIO
+VALID_RATIO = 0.15*TOTAL_USAGE_RATIO
+TEST_RATIO = 0.15*TOTAL_USAGE_RATIO
 BATCH_SIZE = 128
 RESNET_1D_INPUT_SIZE = 224
 R_MEAN, G_MEAN, B_MEAN = 0.485, 0.456, 0.406  # ImageNet's RGB means
@@ -47,3 +50,5 @@ WEIGHT_FILE_PREFIX = "weights_epoch_"
 # main module configurations
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9
+MODEL_NAMES_2SNN = []  # TODO
+OPTIMIZER_PARAMS = {}
