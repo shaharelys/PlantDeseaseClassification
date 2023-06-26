@@ -2,7 +2,7 @@
 
 # General configurations
 ROOT_DIR = "/content/drive/MyDrive/plant_disease_classification"
-DATA_DIR_OLD = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/color/"
+DATA_DIR_OLD = f"{ROOT_DIR}/PlantVillage-Dataset/raw/color/"
 DATA_DIR_1SNN = DATA_DIR_OLD  # f"{ROOT_DIR}/assets/images/PlantVillage-Dataset/raw/organized/"
 DATA_DIR_2SNNS = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/2snns/"
 WEIGHTS_FILE_PATH = f"{ROOT_DIR}/assets/weights"
