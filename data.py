@@ -87,8 +87,5 @@ def rearrange_data_1snn(base_dir: str = DATA_DIR_ORIGINAL_38_CLASSES, new_dir: s
                         old_file_path = os.path.join(dir_path, file_name)
                         new_file_path = os.path.join(new_dir, plant, file_name)
                         shutil.copy2(old_file_path, new_file_path)
-                        print(f"Moved file from {old_file_path} to {new_file_path}")
-                    # Remove the directory - Include part if you are short on space.
-                    # os.rmdir(dir_path)
-                    # print(f"Deleted directory: {dir_path}")
+                        print(f"Copied file from {old_file_path} to {new_file_path}")
                     break  # no need to check the other plants
