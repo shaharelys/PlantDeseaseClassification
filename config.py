@@ -2,8 +2,8 @@
 
 # General configurations
 ROOT_DIR = "/content/drive/MyDrive/python_projects/plant_disease_classification"
-DATA_DIR_OLD = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/color/"
-DATA_DIR_1SNN = DATA_DIR_OLD  # f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/organized/"
+DATA_DIR_ORIGINAL_38_CLASSES = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/color/"
+DATA_DIR_1SNN = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/color_consolidated_to_14_plant_classes/"
 DATA_DIR_2SNNS = f"{ROOT_DIR}/assets/PlantVillage-Dataset/raw/color/"
 WEIGHTS_FILE_PATH = f"{ROOT_DIR}/assets/weights"
 WEIGHTS_FILE_PATH_1SNN = f"{WEIGHTS_FILE_PATH}/1snn"

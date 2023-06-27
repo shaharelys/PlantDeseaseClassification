@@ -54,7 +54,7 @@ def create_data_loaders(data_dir: str,
     return train_loader, valid_loader, test_loader
 
 
-def rearrange_data_1snn(base_dir: str = DATA_DIR_OLD, new_dir: str = DATA_DIR_1SNN) -> None:
+def rearrange_data_1snn(base_dir: str = DATA_DIR_ORIGINAL_38_CLASSES, new_dir: str = DATA_DIR_1SNN) -> None:
     """
     Rearrange dataset in a new directory structure for the training of 1snn.
     """
@@ -86,9 +86,9 @@ def rearrange_data_1snn(base_dir: str = DATA_DIR_OLD, new_dir: str = DATA_DIR_1S
                     for file_name in os.listdir(dir_path):
                         old_file_path = os.path.join(dir_path, file_name)
                         new_file_path = os.path.join(new_dir, plant, file_name)
-                        shutil.move(old_file_path, new_file_path)
+                        shutil.copy2(old_file_path, new_file_path)
                         print(f"Moved file from {old_file_path} to {new_file_path}")
-                    # Remove the directory
-                    os.rmdir(dir_path)
-                    print(f"Deleted directory: {dir_path}")
+                    # Remove the directory - Include part if you are short on space.
+                    # os.rmdir(dir_path)
+                    # print(f"Deleted directory: {dir_path}")
                     break  # no need to check the other plants
