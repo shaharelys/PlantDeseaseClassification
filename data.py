@@ -91,3 +91,48 @@ def rearrange_data_1snn(base_dir: str = DATA_DIR_ORIGINAL_38_CLASSES, new_dir: s
                         shutil.copy2(old_file_path, new_file_path)
                         print(f"Copied file from {old_file_path} to {new_file_path}")
                     break  # no need to check the other plants
+
+
+def rearrange_data_2snns(base_dir: str = DATA_DIR_ORIGINAL_38_CLASSES, new_dir: str = DATA_DIR_2SNNS) -> None:
+    """
+    Rearrange dataset in a new directory structure for the training of 2snns.
+    """
+    # List of plants
+    plants = list(PLANT_CLASSES.keys())
+
+    # Create directories for each plant
+    for plant in plants:
+        plant_dir_path = os.path.join(new_dir, plant)
+        os.makedirs(plant_dir_path, exist_ok=True)
+        print(f"Created directory: {plant_dir_path}")
+
+        # Create directories for each disease within the plant directory
+        for disease in PLANT_CLASSES[plant]:
+            disease_dir_path = os.path.join(plant_dir_path, disease)
+            os.makedirs(disease_dir_path, exist_ok=True)
+            print(f"Created directory: {disease_dir_path}")
+
+    # Print the contents of the base directory
+    print(f"Contents of base directory {base_dir}:")
+    print(os.listdir(base_dir))
+
+    # Move files to the corresponding directory
+    for dir_name in os.listdir(base_dir):
+        print(f'Working on {dir_name}..')
+        for plant in plants:
+            # If the plant name is in the directory name
+            if plant in dir_name:
+                print(f'Noticed it is a {plant} dir..')
+                # Full path to the directory
+                dir_path = os.path.join(base_dir, dir_name)
+                # If it is a directory
+                if os.path.isdir(dir_path):
+                    # Get the disease from the directory name
+                    disease = dir_name.split("___")[1]
+                    # Move all files in the directory to the corresponding plant-disease directory
+                    for file_name in os.listdir(dir_path):
+                        old_file_path = os.path.join(dir_path, file_name)
+                        new_file_path = os.path.join(new_dir, plant, disease, file_name)
+                        shutil.copy2(old_file_path, new_file_path)
+                        print(f"Copied file from {old_file_path} to {new_file_path}")
+                    break  # no need to check the other plants

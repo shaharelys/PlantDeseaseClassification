@@ -157,3 +157,5 @@ def train_model(model: torch.nn.Module,
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
 
         save_model_weights_interval(model, snn_type, epoch, num_epochs, plant_type, save_interval)
+
+    print(f'Training model {f"{plant_type}-" if plant_type else ""}{snn_type} has complete.')
