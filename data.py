@@ -34,7 +34,7 @@ def create_data_loaders(data_dir: str,
         full_dataset), "The sizes of the splits do not add up to the size of the full dataset."
 
     print(f'Dataset usage:\n'
-          f'{full_dataset}\t instances in the dataset:'
+          f'{len(full_dataset)}\t instances in the dataset:\n'
           f'{train_size}\t instances were allocated for training.\n'
           f'{valid_size}\t instances were allocated for validation.\n'
           f'{test_size}\t instances were allocated for testing.\n'
