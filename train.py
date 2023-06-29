@@ -16,7 +16,7 @@ def train_model(model: torch.nn.Module,
                 plant_type: Optional[str] = None,
                 last_epoch: Optional[int] = None,
                 num_epochs: int = NUM_EPOCH,
-                save_interval: int = SAVE_INTERVAL_1SNN
+                save_interval: int = SAVE_INTERVAL_DEFAULT
                 ) -> None:
 
     start_epoch = 0 if last_epoch is None else last_epoch + 1

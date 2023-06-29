@@ -19,7 +19,8 @@ def train_and_evaluate_model(device: torch.device,
                              optimizer: optim.Optimizer,
                              snn_type: str,
                              test_loader: DataLoader,
-                             last_epoch: int = None) -> None:
+                             last_epoch: int = None,
+                             save_interval: int = SAVE_INTERVAL_DEFAULT) -> None:
 
     # Train the model
     print(f'Training {model_name}..')
@@ -29,7 +30,8 @@ def train_and_evaluate_model(device: torch.device,
                 criterion=criterion,
                 optimizer=optimizer,
                 snn_type=snn_type,
-                last_epoch=last_epoch)
+                last_epoch=last_epoch,
+                save_interval=save_interval)
 
     # Evaluate the model
     print(f'Evaluating {model_name}..')
@@ -71,7 +73,8 @@ def main_1snn() -> None:
                              optimizer=optimizer,
                              snn_type='1snn',
                              test_loader=test_loader,
-                             last_epoch=last_epoch)
+                             last_epoch=last_epoch,
+                             save_interval=SAVE_INTERVAL_1SNN)
 
 
 def main_2snns() -> None:
@@ -80,8 +83,12 @@ def main_2snns() -> None:
 
     # For each model in the 2SNN model set
     for model_name in MODEL_NAMES_2SNN:
+        # Validate model name
+        if model_name not in PLANT_CLASSES:
+            raise ValueError(f"Invalid plant type: {model_name}")
+
         # Define the directory for the specific model's data
-        model_data_dir = f'DATA_DIR_2SNNS/{model_name}'
+        model_data_dir = f'{DATA_DIR_2SNNS}/{model_name}'
 
         # Create data loaders for training, validation and testing datasets.
         train_loader, valid_loader, test_loader = create_data_loaders(data_dir=model_data_dir)
@@ -100,7 +107,7 @@ def main_2snns() -> None:
         criterion = nn.CrossEntropyLoss()
 
         # Define the optimizer for the training, the parameters are loaded from the OPTIMIZER_PARAMS dictionary.
-        optimizer_params_2snn = OPTIMIZER_PARAMS[model_name]
+        optimizer_params_2snn = OPTIMIZER_PARAMS_2SNNS.get(model_name, {'lr': LEARNING_RATE, 'momentum': MOMENTUM})
         optimizer_2snn = optim.SGD(model.parameters(), **optimizer_params_2snn)
 
         # Call the function to train and evaluate the model.
@@ -112,8 +119,10 @@ def main_2snns() -> None:
                                  optimizer=optimizer_2snn,
                                  snn_type='2snn',
                                  test_loader=test_loader,
-                                 last_epoch=last_epoch)
+                                 last_epoch=last_epoch,
+                                 save_interval=SAVE_INTERVAL_2SNN)
 
 
 if __name__ == "__main__":
     main_1snn()
+    main_2snns()

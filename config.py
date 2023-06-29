@@ -43,6 +43,7 @@ R_STD, G_STD, B_STD = 0.229, 0.224, 0.225  # ImageNet's RGB std
 
 # train module configurations
 NUM_EPOCH = 15
+SAVE_INTERVAL_DEFAULT = 1
 SAVE_INTERVAL_1SNN = 1
 SAVE_INTERVAL_2SNN = 5
 WEIGHT_FILE_PREFIX = "weights_epoch_"
@@ -50,5 +51,21 @@ WEIGHT_FILE_PREFIX = "weights_epoch_"
 # main module configurations
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9
-MODEL_NAMES_2SNN = []  # TODO
-OPTIMIZER_PARAMS = {}
+MODEL_NAMES_2SNN = list(PLANT_CLASSES.keys())
+OPTIMIZER_PARAMS_2SNNS = {
+    "Apple": {"lr": 0.001, "momentum": 0.9},
+    "Blueberry": {"lr": 0.001, "momentum": 0.9},
+    "Cherry": {"lr": 0.001, "momentum": 0.9},
+    "Corn": {"lr": 0.001, "momentum": 0.9},
+    "Grape": {"lr": 0.001, "momentum": 0.9},
+    "Orange": {"lr": 0.001, "momentum": 0.9},
+    "Peach": {"lr": 0.001, "momentum": 0.9},
+    "Pepper": {"lr": 0.001, "momentum": 0.9},
+    "Potato": {"lr": 0.001, "momentum": 0.9},
+    "Raspberry": {"lr": 0.001, "momentum": 0.9},
+    "Soybean": {"lr": 0.001, "momentum": 0.9},
+    "Squash": {"lr": 0.001, "momentum": 0.9},
+    "Strawberry": {"lr": 0.001, "momentum": 0.9},
+    "Tomato": {"lr": 0.001, "momentum": 0.9}
+}
+
