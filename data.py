@@ -127,8 +127,8 @@ def rearrange_data_2snns(base_dir: str = DATA_DIR_ORIGINAL_38_CLASSES, new_dir: 
                 dir_path = os.path.join(base_dir, dir_name)
                 # If it is a directory
                 if os.path.isdir(dir_path):
-                    # Get the disease from the directory name
-                    disease = dir_name.split("___")[1]
+                    # Get the disease from the directory name and strip trailing underscores
+                    disease = dir_name.split("___")[1].rstrip("_")
                     # Move all files in the directory to the corresponding plant-disease directory
                     for file_name in os.listdir(dir_path):
                         old_file_path = os.path.join(dir_path, file_name)
