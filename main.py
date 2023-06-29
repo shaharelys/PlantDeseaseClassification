@@ -11,40 +11,6 @@ from train import train_model
 from evaluate import evaluate_model
 
 
-def main_1snn_old() -> None:
-    # Set the device for computation
-    device = get_device()
-
-    # Create data loaders
-    train_loader, valid_loader, test_loader = create_data_loaders(DATA_DIR_1SNN)
-    dataloaders = {'train': train_loader, 'val': valid_loader}
-
-    # Load the model and move it to the device
-    model, last_epoch = load_model('1snn')
-    model.to(device)
-
-    # Define the criterion and the optimizer
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
-
-    # Train the model
-    print('Training 1snn..')
-    train_model(model=model,
-                device=device,
-                dataloaders=dataloaders,
-                criterion=criterion,
-                optimizer=optimizer,
-                snn_type='1snn',
-                last_epoch=last_epoch)
-
-    # Evaluate the model
-    print('Evaluating 1snn..')
-    evaluate_model(model=model,
-                   dataloader=test_loader,
-                   criterion=criterion,
-                   device=device)
-
-
 def train_and_evaluate_model(device: torch.device,
                              dataloaders: dict[str, DataLoader],
                              model_name: str,
