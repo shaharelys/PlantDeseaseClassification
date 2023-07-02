@@ -104,6 +104,10 @@ def main_2snns() -> None:
         # If yes, 'last_epoch' will have that epoch number, else it will be None.
         model, last_epoch = load_model(snn_type='2snn', plant_type=model_name)
 
+        # Checks model validity
+        if not model:
+            continue
+
         # Move the model to the acquired device for computation.
         model.to(device)
 

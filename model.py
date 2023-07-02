@@ -9,7 +9,7 @@ from config import *
 
 def load_model(snn_type: str,
                plant_type: Optional[str] = None
-               ) -> tuple[torch.nn.Module, int]:
+               ) -> tuple[torch.nn.Module, int] or tuple[None, None]:
     """
     This function either returns a 1snn or a 2snn model based on the snn_type argument.
     For a 2snn, it also requires the plant_type argument.
@@ -35,6 +35,8 @@ def load_model(snn_type: str,
             print(
                 f"Warning: Insufficient disease classes found for the plant type: {plant_type}.\n"
                 f"A model cannot be trained with less than two classes.")
+
+            return None, None
 
     # Load pre-trained ResNet50
     model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
