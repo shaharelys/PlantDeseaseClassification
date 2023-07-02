@@ -2,6 +2,7 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
+from typing import Optional
 from torch.utils.data import DataLoader
 from config import *
 from data import create_data_loaders
@@ -13,12 +14,12 @@ from evaluate import evaluate_model
 
 def train_and_evaluate_model(device: torch.device,
                              dataloaders: dict[str, DataLoader],
-                             model_name: str,
                              model: nn.Module,
                              criterion: nn.Module,
                              optimizer: optim.Optimizer,
-                             snn_type: str,
                              test_loader: DataLoader,
+                             snn_type: str,
+                             model_name: Optional[str] = None,
                              last_epoch: int = None,
                              save_interval: int = SAVE_INTERVAL_DEFAULT) -> None:
 
@@ -30,6 +31,7 @@ def train_and_evaluate_model(device: torch.device,
                 criterion=criterion,
                 optimizer=optimizer,
                 snn_type=snn_type,
+                model_name=model_name,
                 last_epoch=last_epoch,
                 save_interval=save_interval)
 
@@ -67,12 +69,12 @@ def main_1snn() -> None:
     # Call the function to train and evaluate the model.
     train_and_evaluate_model(device=device,
                              dataloaders=dataloaders,
-                             model_name='1snn',
                              model=model,
                              criterion=criterion,
                              optimizer=optimizer,
-                             snn_type='1snn',
                              test_loader=test_loader,
+                             snn_type='1snn',
+                             model_name=None,
                              last_epoch=last_epoch,
                              save_interval=SAVE_INTERVAL_1SNN)
 
@@ -113,12 +115,12 @@ def main_2snns() -> None:
         # Call the function to train and evaluate the model.
         train_and_evaluate_model(device=device,
                                  dataloaders=dataloaders_2snn,
-                                 model_name=model_name,
                                  model=model,
                                  criterion=criterion,
                                  optimizer=optimizer_2snn,
-                                 snn_type='2snn',
                                  test_loader=test_loader,
+                                 snn_type='2snn',
+                                 model_name=model_name,
                                  last_epoch=last_epoch,
                                  save_interval=SAVE_INTERVAL_2SNN)
 

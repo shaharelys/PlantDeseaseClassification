@@ -1,7 +1,7 @@
 # train.py
 import os
 import torch
-from typing import Dict, Optional
+from typing import Optional
 from torch.optim import Optimizer
 from torch.nn import Module
 from torch.utils.data import DataLoader
@@ -115,14 +115,14 @@ def save_model_weights_interval(model: Module,
                                 snn_type: str,
                                 epoch: int,
                                 num_epochs: int,
-                                plant_type: Optional[str] = None,
+                                model_name: Optional[str] = None,
                                 save_interval: int = SAVE_INTERVAL_DEFAULT
                                 ) -> None:
     if epoch % save_interval == 0 or epoch == num_epochs - 1:
         if snn_type == '1snn':
             weights_file_path = WEIGHTS_FILE_PATH_1SNN
         else:
-            weights_file_path = f"{WEIGHTS_FILE_PATH_2SNNS}/{plant_type.lower()}"
+            weights_file_path = f"{WEIGHTS_FILE_PATH_2SNNS}/{model_name.lower()}"
 
         # Create the directory if it doesn't exist
         if not os.path.exists(weights_file_path):
@@ -137,7 +137,7 @@ def train_model(model: torch.nn.Module,
                 criterion: Module,
                 optimizer: Optimizer,
                 snn_type: str,
-                plant_type: Optional[str] = None,
+                model_name: Optional[str] = None,
                 last_epoch: Optional[int] = None,
                 num_epochs: int = NUM_EPOCH,
                 save_interval: int = SAVE_INTERVAL_DEFAULT
@@ -153,9 +153,20 @@ def train_model(model: torch.nn.Module,
             else:
                 model.eval()
 
-            epoch_loss, epoch_acc = calculate_loss_acc(model, dataloaders[phase], criterion, optimizer, phase, device)
+            epoch_loss, epoch_acc = calculate_loss_acc(model=model,
+                                                       dataloader=dataloaders[phase],
+                                                       criterion=criterion,
+                                                       optimizer=optimizer,
+                                                       phase=phase,
+                                                       device=device)
+
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
 
-        save_model_weights_interval(model, snn_type, epoch, num_epochs, plant_type, save_interval)
+        save_model_weights_interval(model=model,
+                                    snn_type=snn_type,
+                                    epoch=epoch,
+                                    num_epochs=num_epochs,
+                                    model_name=model_name,
+                                    save_interval=save_interval)
 
-    print(f'Training model {f"{plant_type}-" if plant_type else ""}{snn_type} has complete.')
+    print(f'Training model {f"{model_name}-" if model_name else ""}{snn_type} has complete.')
