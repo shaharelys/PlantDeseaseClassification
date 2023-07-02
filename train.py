@@ -10,7 +10,7 @@ from config import *
 """
 def train_model_old(model: torch.nn.Module,
                 device: torch.device,
-                dataloaders: Dict[str, DataLoader],
+                dataloaders: dict[str, DataLoader],
                 criterion: Module,
                 optimizer: Optimizer,
                 snn_type: str,
@@ -133,7 +133,7 @@ def save_model_weights_interval(model: Module,
 
 def train_model(model: torch.nn.Module,
                 device: torch.device,
-                dataloaders: Dict[str, DataLoader],
+                dataloaders: dict[str, DataLoader],
                 criterion: Module,
                 optimizer: Optimizer,
                 snn_type: str,
