@@ -118,7 +118,7 @@ def save_model_weights_interval(model: Module,
                                 model_name: Optional[str] = None,
                                 save_interval: int = SAVE_INTERVAL_DEFAULT
                                 ) -> None:
-    if epoch % save_interval == 0 or epoch == num_epochs - 1:
+    if epoch % save_interval == 0 or epoch == num_epochs:
         if snn_type == '1snn':
             weights_file_path = WEIGHTS_FILE_PATH_1SNN
         else:
@@ -145,7 +145,7 @@ def train_model(model: torch.nn.Module,
 
     start_epoch = 0 if last_epoch is None else last_epoch
     for epoch in range(start_epoch + 1, num_epochs + 1):
-        print('Epoch {}/{}'.format(epoch, num_epochs - 1))
+        print('Epoch {}/{}'.format(epoch, num_epochs))
 
         for phase in ['train', 'val']:
             if phase == 'train':
@@ -169,4 +169,4 @@ def train_model(model: torch.nn.Module,
                                     model_name=model_name,
                                     save_interval=save_interval)
 
-    print(f'Training model {f"{model_name}-" if model_name else ""}{snn_type} has complete.\n')
+    print(f'Training model {f"{model_name}-" if model_name else ""}{snn_type} is complete.\n')
