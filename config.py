@@ -32,7 +32,7 @@ TOTAL_CLASSES_NUMBER = 38  # not in use in final code
 
 # data module configurations
 SEED = 6061993  # the seed for the random split (my birthdate)
-TOTAL_USAGE_RATIO = 10/100  # 30% # not in use in final code
+TOTAL_USAGE_RATIO = 100/100  # 30% # not in use in final code
 TRAIN_RATIO = 0.7*TOTAL_USAGE_RATIO
 VALID_RATIO = 0.15*TOTAL_USAGE_RATIO
 TEST_RATIO = 0.15*TOTAL_USAGE_RATIO
@@ -42,7 +42,7 @@ R_MEAN, G_MEAN, B_MEAN = 0.485, 0.456, 0.406  # ImageNet's RGB means
 R_STD, G_STD, B_STD = 0.229, 0.224, 0.225  # ImageNet's RGB std
 
 # train module configurations
-NUM_EPOCH = 3
+NUM_EPOCH = 10
 SAVE_INTERVAL_DEFAULT = 1
 SAVE_INTERVAL_1SNN = 1
 SAVE_INTERVAL_2SNN = 5
