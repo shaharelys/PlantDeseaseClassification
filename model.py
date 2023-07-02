@@ -34,7 +34,7 @@ def load_model(snn_type: str,
         if num_classes < 2:
             print(
                 f"Warning: Insufficient disease classes found for the plant type: {plant_type}.\n"
-                f"A model cannot be trained with less than two classes.")
+                f"A model cannot be trained with less than two classes.\n\n")
 
             return None, None
 

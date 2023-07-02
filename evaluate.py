@@ -28,4 +28,4 @@ def evaluate_model(model: Module,
     loss = running_loss / len(dataloader.dataset)
     acc = running_corrects.double() / len(dataloader.dataset)
 
-    print('Test Loss: {:.4f} Acc: {:.4f}'.format(loss, acc))
+    print('Test Loss: {:.4f} Acc: {:.4f}\n\n'.format(loss, acc))

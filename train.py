@@ -143,8 +143,8 @@ def train_model(model: torch.nn.Module,
                 save_interval: int = SAVE_INTERVAL_DEFAULT
                 ) -> None:
 
-    start_epoch = 0 if last_epoch is None else last_epoch + 1
-    for epoch in range(start_epoch, num_epochs):
+    start_epoch = 0 if last_epoch is None else last_epoch
+    for epoch in range(start_epoch + 1, num_epochs + 1):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
 
         for phase in ['train', 'val']:
@@ -169,4 +169,4 @@ def train_model(model: torch.nn.Module,
                                     model_name=model_name,
                                     save_interval=save_interval)
 
-    print(f'Training model {f"{model_name}-" if model_name else ""}{snn_type} has complete.')
+    print(f'Training model {f"{model_name}-" if model_name else ""}{snn_type} has complete.\n')
