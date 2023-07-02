@@ -124,5 +124,5 @@ def main_2snns() -> None:
 
 
 if __name__ == "__main__":
-    main_1snn()
+    # main_1snn()
     main_2snns()
