@@ -8,7 +8,8 @@ from typing import Tuple
 from config import *
 
 
-def create_data_loaders(data_dir: str,
+def create_data_loaders(representative_name: str,
+                        data_dir: str,
                         train_ratio: float = TRAIN_RATIO,
                         valid_ratio: float = VALID_RATIO,
                         test_ratio: float = TEST_RATIO,
@@ -33,7 +34,7 @@ def create_data_loaders(data_dir: str,
     assert train_size + valid_size + test_size + dropout_size == len(
         full_dataset), "The sizes of the splits do not add up to the size of the full dataset."
 
-    print(f'Dataset usage:\n'
+    print(f'{representative_name} dataset usage:\n'
           f'{len(full_dataset)}\t instances in the dataset:\n'
           f'{train_size}\t instances were allocated for training.\n'
           f'{valid_size}\t instances were allocated for validation.\n'

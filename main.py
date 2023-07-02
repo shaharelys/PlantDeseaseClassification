@@ -48,7 +48,8 @@ def main_1snn() -> None:
     device = get_device()
 
     # Create data loaders for training, validation and testing datasets.
-    train_loader, valid_loader, test_loader = create_data_loaders(data_dir=DATA_DIR_1SNN)
+    train_loader, valid_loader, test_loader = create_data_loaders(representative_name='Full-snn1',
+                                                                  data_dir=DATA_DIR_1SNN)
 
     # Combine train_loader and valid_loader in a dictionary for easier access during training and validation
     dataloaders = {'train': train_loader, 'val': valid_loader}
@@ -93,7 +94,8 @@ def main_2snns() -> None:
         model_data_dir = f'{DATA_DIR_2SNNS}/{model_name}'
 
         # Create data loaders for training, validation and testing datasets.
-        train_loader, valid_loader, test_loader = create_data_loaders(data_dir=model_data_dir)
+        train_loader, valid_loader, test_loader = create_data_loaders(representative_name=model_name,
+                                                                      data_dir=model_data_dir)
 
         # Combine train_loader and valid_loader in a dictionary for easier access during training and validation
         dataloaders_2snn = {'train': train_loader, 'val': valid_loader}
